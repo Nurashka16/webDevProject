@@ -1,0 +1,35 @@
+.task10-array-filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.task10-input-group {
+    max-width: 250px;
+}
+
+.task10-input-group input,
+.task10-input-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.task10-input-group textarea {
+    height: 80px;
+    text-align: left;
+    font-family: monospace;
+    resize: vertical;
+}
+
+.task10-result-output pre {
+    background: #f0f9ff;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+}

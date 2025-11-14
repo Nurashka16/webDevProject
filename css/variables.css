@@ -1,0 +1,32 @@
+:root {
+    /* Цвета — ориентируемся на градиент: от темно-синего к светло-голубому */
+    --primary-color: #0a3d62;      /* Глубокий синий (как верх градиента) */
+    --secondary-color: #1e84c9;    /* Яркий, но не резкий — акцент */
+    --accent-color: #1b75bb;       /* Акцентный — чуть темнее secondary */
+    --text-color: #121212;         /* Почти чёрный — читаемый */
+    --bg-color: #f0f9ff;           /* Очень светлый фон — как низ градиента */
+    --header-bg: #0a3d62;          /* Как primary */
+    --footer-bg: #0a3d62;          /* Как primary */
+    --text-light: #fff;            /* Белый для контраста */
+    --border-color: #b3d9f7;       /* Светлая граница — как переход в градиенте */
+
+    /* Шрифты */
+    --font-main: 'Arial', sans-serif;
+    --font-size-base: 16px;
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.5rem;
+    --font-size-h3: 1.25rem;
+
+    /* Отступы */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+
+    /* Размеры */
+    --container-width: 1200px;
+    --header-height: 60px;
+    --footer-height: 60px;
+
+    /* Градиент для фона (если нужно) */
+    --gradient-bg: linear-gradient(180deg, #0a3d62 0%, #b3d9f7 100%);
+}

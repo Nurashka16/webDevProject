@@ -1,0 +1,27 @@
+.task11-float-comparator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.task11-input-group {
+    max-width: 120px;
+}
+
+.task11-input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.task11-result-output pre {
+    background: #f0f9ff;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+}

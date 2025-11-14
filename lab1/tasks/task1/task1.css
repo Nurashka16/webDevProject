@@ -1,0 +1,29 @@
+.task1-temperature-converter {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.task1-select-wrapper {
+    flex: 1;
+}
+
+.task1-result-box input {
+    border: 2px solid var(--accent-color);
+    background: #f0f9ff;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.task1-result-output pre {
+    background: #f0f9ff;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+    .task1-temperature-converter {
+        flex-direction: column;
+        gap: 16px;
+    }
+}

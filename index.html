@@ -1,24 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная — Лабораторные по JS</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
-  <h1>Навигация по работам</h1>
-  <nav>
-    <ol>
-      <li><a href="lab1/index.html">JS</a></li>
-      <li><a href="lab2/index.html">DOM</a></li>
-      <li><a href="lab3/index.html">Валидация данных</a></li>
-      <li><a href="lab4/index.html">Promise</a></li>
-      <li><a href="lab5/index.html">Fetch</a></li>
-      <li><a href="lab6/index.html">Classes</a></li>
-    </ol>
-  </nav>
-</body>
+<script src="./partials/header.js"></script>
 
+    <main class="main">
+        <div class="welcome">
+            <h1>Добро пожаловать!</h1>
+            <p>Выберите лабораторную работу, для проверки</p>
+        </div>
+
+        <div class="lab-list">
+            <a href="./lab1/lab1.html" class="lab-card-link">
+                <div class="lab-card">
+                    <h2>Лабораторная №1</h2>
+                    <p>Основы JS: переменные, типы данных, операторы</p>
+                </div>
+            </a>
+            <a href="lab2/index.html" class="lab-card-link">
+                <div class="lab-card">
+                    <h2>Лабораторная №2</h2>
+                    <p>Условия, циклы, функции</p>
+                </div>
+            </a>
+            <a href="lab3/index.html" class="lab-card-link">
+                <div class="lab-card">
+                    <h2>Лабораторная №3</h2>
+                    <p>Массивы и объекты</p>
+                </div>
+            </a>
+            <a href="lab4/index.html" class="lab-card-link">
+                <div class="lab-card">
+                    <h2>Лабораторная №4</h2>
+                    <p>DOM и события</p>
+                </div>
+            </a>
+            <a href="lab5/index.html" class="lab-card-link">
+                <div class="lab-card">
+                    <h2>Лабораторная №5</h2>
+                    <p>Работа с формами и localStorage</p>
+                </div>
+            </a>
+            <a href="lab6/index.html" class="lab-card-link">
+                <div class="lab-card">
+                    <h2>Лабораторная №6</h2>
+                    <p>Асинхронность, fetch, JSON</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Анимированный кот внизу -->
+    <div class="cat-container">
+        <div class="cat">🎩🐱</div>
+    </div>
+<script src="./partials/footer.js"></script>
+</body>
 </html>
