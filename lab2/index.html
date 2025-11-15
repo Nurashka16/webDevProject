@@ -1,90 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Лабораторная работа #2 — DOM и события</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="./lab2.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./lab2.css" />
+    <link rel="stylesheet" href="./tasks/task1/task1.css" />
+    <link rel="stylesheet" href="./tasks/task2/task2.css" />
+    <link rel="stylesheet" href="./tasks/task3/task3.css" />
+    <link rel="stylesheet" href="./tasks/task4/task4.css" />
+    <link rel="stylesheet" href="./tasks/task5/task5.css" />
+    <link rel="stylesheet" href="./tasks/tasks.css" />
+  </head>
+  <body>
     <!-- Импорт шапки -->
     <script src="../partials/header.js"></script>
 
     <main class="main">
-        <div class="lab-content">
-            <h1>Лабораторная работа #2 — DOM и события</h1>
-            <p>Цель: изучить DOM, события и их обработку, взаимосвязь и способы манипуляций с объектами дерева.</p>
-
-            <!-- Like -->
-            <section class="task-section">
-                <h2>1. Like</h2>
-                <div class="like-container">
-                    <button id="likeBtn" class="like-btn" aria-label="Поставить лайк">
-                        👍
-                    </button>
-                </div>
-            </section>
-
-            <!-- Like / Dislike -->
-            <section class="task-section">
-                <h2>2. Like / Dislike</h2>
-                <div class="like-dislike-container">
-                    <button id="likeBtn2" class="like-btn2" aria-label="Поставить лайк">
-                        👍
-                    </button>
-                    <button id="dislikeBtn2" class="dislike-btn2" aria-label="Поставить дизлайк">
-                        👎
-                    </button>
-                </div>
-            </section>
-
-            <!-- Корзина -->
-            <section class="task-section">
-                <h2>3. Корзина</h2>
-                <div class="cart-header">
-                    <span>🛒</span>
-                    <span id="cartCounter" class="cart-counter">0</span>
-                </div>
-                <div class="products-container">
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" alt="Товар 1">
-                        <p>Товар 1</p>
-                        <button class="add-to-cart-btn" data-id="1">В корзину</button>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://via.placeholder.com/150" alt="Товар 2">
-                        <p>Товар 2</p>
-                        <button class="add-to-cart-btn" data-id="2">В корзину</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Сортировка -->
-            <section class="task-section">
-                <h2>4. Сортировка</h2>
-                <div class="sort-controls">
-                    <button id="sortAsc">По возрастанию</button>
-                    <button id="sortDesc">По убыванию</button>
-                    <button id="sortReset">Исходный порядок</button>
-                </div>
-                <ul id="numberList"></ul>
-            </section>
-
-            <!-- Координаты -->
-            <section class="task-section">
-                <h2>5. Координаты</h2>
-                <div id="coordsOutput">Нажмите в любом месте</div>
-            </section>
+      <div class="lab-content">
+        <div class="title">
+          <h1>Лабораторная работа #2 — DOM и события</h1>
+          <p>
+            Цель: изучить DOM, события и их обработку, взаимосвязь и способы
+            манипуляций с объектами дерева.
+          </p>
         </div>
+
+        <!-- Task 1: Like -->
+        <div id="task1-container"></div>
+
+        <!-- Task 2: Like / Dislike -->
+        <div id="task2-container"></div>
+
+        <!-- Task 3: Корзина -->
+        <div id="task3-container"></div>
+
+        <!-- Task 4: Сортировка -->
+        <div id="task4-container"></div>
+
+        <!-- Task 5: Координаты -->
+        <div id="task5-container"></div>
+        <!-- Подключение задач -->
+        <script src="./tasks/task1/task1.html.js"></script>
+        <script src="./tasks/task2/task2.html.js"></script>
+        <script src="./tasks/task3/task3.html.js"></script>
+        <script src="./tasks/task4/task4.html.js"></script>
+        <script src="./tasks/task5/task5.html.js"></script>
+      </div>
     </main>
 
     <!-- Импорт футера -->
     <script src="../partials/footer.js"></script>
-
     <script src="lab2.js"></script>
-</body>
+  </body>
 </html>

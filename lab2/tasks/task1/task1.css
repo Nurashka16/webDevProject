@@ -1,0 +1,41 @@
+.task1-like-calculator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.like-btn {
+    font-size: 1.5rem;
+    padding: 10px;
+    border: none; /* Убрали border */
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1e84c9;
+    border: 2px solid #1e84c9;
+}
+
+.like-btn.active {
+    background-color: #1e84c9; /* Красный цвет */
+}
+
+.like-icon {
+    width: 24px;
+    height: 24px;
+    transition: fill 0.2s;
+}
+
+.like-btn.active .like-icon {
+    fill: white; /* Белый цвет иконки при активации */
+    stroke: white;
+}

@@ -1,0 +1,55 @@
+.task2-like-dislike-calculator {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.like-btn2, .dislike-btn2 {
+    font-size: 1.5rem;
+    padding: 10px;
+    border: none; 
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: transparent;
+}
+
+.like-btn2.active {
+    background: #eef7ff;
+}
+
+.dislike-btn2.active {
+    background: #dd5f5f; 
+}
+
+.like-icon2 {
+    width: 32px;
+    height: 32px;
+    transition: fill 0.2s;
+}
+
+.dislike-icon2 {
+    width: 32px;
+    height: 32px;
+    transition: fill 0.2s;
+}
+
+.like-btn2.active .like-icon2 {
+    fill: var(--secondary-color);
+}
+
+.dislike-btn2.active .dislike-icon2 {
+    fill: white; 
+}

@@ -1,0 +1,22 @@
+.task5-coords-calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#coordsOutput {
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+}
