@@ -1,11 +1,361 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>Fetch</h1>
-</body>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторная работа #5 — Тосты</title>
+    <script>
+      (function () {
+        const saved = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", saved);
+      })();
+    </script>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./tasks/task1/task1.css" />
+    <link rel="stylesheet" href="./tasks/task2/task2.css" />
+    <link rel="stylesheet" href="./tasks/task3/task3.css" />
+    <link rel="stylesheet" href="./tasks/task4/task4.css" />
+  </head>
+  <body>
+    <script src="./header.js"></script>
+
+    <main class="main">
+      <div class="lab-content">
+        <div class="title">
+          <h1>Лабораторная работа #5</h1>
+          <p>Fetch</p>
+        </div>
+
+        <!-- Задача 1: Тост -->
+        <div class="task task1">
+          <h3>1. Тост</h3>
+          <p>
+            Создайте компонент всплывающего уведомления (toasts), который
+            отображается внизу справа страницы. Уведомление должно плавно
+            появляться и исчезать, иметь разные стили для ошибки (красный) и
+            сообщения (зелёный), закрываться по кнопке, быть доступным и
+            отзывчивым.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task1-solution">
+              <button id="showSuccessToast" class="solve-btn">
+                Показать успешное уведомление
+              </button>
+              <button id="showErrorToast" class="solve-btn error-btn">
+                Показать ошибку
+              </button>
+              <div class="result-output">
+                <pre id="jobResult">
+Нажмите кнопку для вызова toasts — уведомление появится внизу</pre
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn1"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode1', 'toggleCodeBtn1')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode1" class="code-block hidden">
+// Показ тоста
+function showToast(message, type = 'success') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        container.setAttribute('aria-live', 'polite');
+        container.setAttribute('aria-atomic', 'true');
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.setAttribute('role', 'alert');
+    toast.innerHTML = `
+        <span>${message}</span>
+        <button class="close-toast" aria-label="Закрыть уведомление">&times;</button>
+    `;
+    container.appendChild(toast);
+
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    const closeToast = () => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+            if (container.children.length === 0) {
+                container.remove();
+            }
+        }, 300);
+    };
+
+    toast.querySelector('.close-toast').addEventListener('click', closeToast);
+    const autoCloseTimer = setTimeout(closeToast, 4000);
+    const cancelAutoClose = () => {
+        clearTimeout(autoCloseTimer);
+        toast.removeEventListener('mouseenter', cancelAutoClose);
+        toast.removeEventListener('focusin', cancelAutoClose);
+    };
+    toast.addEventListener('mouseenter', cancelAutoClose);
+    toast.addEventListener('focusin', cancelAutoClose);
+}
+
+// Имитация API
+async function mockApiCall(isSuccess) {
+    await new Promise(resolve => setTimeout(resolve, 600));
+    if (isSuccess) {
+        return { message: "Операция выполнена успешно!" };
+    } else {
+        throw new Error("Произошла ошибка при обработке запроса.");
+    }
+}
+
+// Обработчики
+document.addEventListener('DOMContentLoaded', () => {
+    const resultEl = document.getElementById('jobResult');
+
+    document.getElementById('showSuccessToast')?.addEventListener('click', async () => {
+        try {
+            const { message } = await mockApiCall(true);
+            showToast(message, 'success');
+            resultEl.textContent = '✅ Уведомление показано внизу';
+        } catch (err) {
+            showToast('Неожиданная ошибка', 'error');
+            resultEl.textContent = '⚠️ Ошибка выполнения';
+        }
+    });
+
+    document.getElementById('showErrorToast')?.addEventListener('click', async () => {
+        try {
+            await mockApiCall(false);
+        } catch (err) {
+            showToast(err.message, 'error');
+            resultEl.textContent = '❌ Уведомление об ошибке показано';
+        }
+    });
+});</pre>
+          </div>
+        </div>
+
+        <!-- Задача 2: Галерея -->
+        <div class="task task3">
+          <h3>2. Галерея</h3>
+          <p>
+            Используя AJAX, после загрузки страницы отправить запрос на
+            получение изображений и отобразить их на странице. Если возникают
+            ошибки — сделать до 3 повторных попыток с интервалом. При полном
+            провале — оповестить через тост. Во время загрузки — показывать
+            индикатор. Если пришёл пустой массив — показать "Изображения не
+            найдены".
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task3-solution">
+              <div class="result-output">
+                <pre id="galleryResult">
+Для новых картинок нажмите "обновить"</pre
+                >
+              </div>
+
+              <div id="galleryContainer" class="gallery-container"></div>
+
+              <button id="refreshGalleryBtn" class="refresh-btn">
+                Обновить галерею
+              </button>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn3"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode3', 'toggleCodeBtn3')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode3" class="code-block hidden">
+// См. реализацию в lab5/tasks/task4/task4.js</pre
+            >
+          </div>
+        </div>
+
+        <!-- Задача 3: Температура -->
+        <div class="task task2">
+          <h3>3. Температура в классе</h3>
+          <p>
+            Отправить сведения о температуре в классе. Форма должна включать
+            номер аудитории и температуру. При отправке предотвратить
+            стандартное поведение формы, использовать Fetch API для отправки
+            POST-запроса.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task2-solution">
+              <form id="temperatureForm" class="temp-form">
+                <div class="form-group">
+                  <label for="classroom" class="form-label"
+                    >Номер аудитории:</label
+                  >
+                  <input
+                    type="text"
+                    id="classroom"
+                    name="classroom"
+                    class="form-input"
+                    placeholder="Например: Tip-1315"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="temperature" class="form-label"
+                    >Температура (°C):</label
+                  >
+                  <input
+                    type="number"
+                    id="temperature"
+                    name="temperature"
+                    class="form-input"
+                    step="0.1"
+                    placeholder="Например: 20.5"
+                    required
+                    aria-required="true"
+                  />
+                </div>
+
+                <button type="submit" id="submitTempBtn" class="submit-btn">
+                  Отправить данные
+                </button>
+              </form>
+
+              <div class="result-output">
+                <pre id="tempResult">
+Введите данные и нажмите "Отправить данные"</pre
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn2"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode2', 'toggleCodeBtn2')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode2" class="code-block hidden">
+async function handleTemperatureSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const submitBtn = document.getElementById('submitTempBtn');
+    const resultElement = document.getElementById('tempResult');
+    const classroom = document.getElementById('classroom').value.trim();
+    const temperature = parseFloat(document.getElementById('temperature').value);
+
+    if (!classroom) {
+        showToast('❌ Введите номер аудитории', 'error');
+        document.getElementById('classroom').focus();
+        return;
+    }
+    if (isNaN(temperature)) {
+        showToast('❌ Введите корректную температуру', 'error');
+        document.getElementById('temperature').focus();
+        return;
+    }
+
+    submitBtn.disabled = true;
+    resultElement.textContent = '🔄 Отправка данных...';
+
+    try {
+        const response = await fetch('http://95.163.242.125/temp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ class: classroom, temp: temperature })
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message || `Ошибка: ${response.status}`);
+
+        if (data.status === 'ok') {
+            showToast('✅ ' + data.message, 'success');
+            resultElement.textContent = '✅ ' + data.message;
+            form.reset();
+        } else {
+            throw new Error(data.message || 'Неизвестная ошибка');
+        }
+    } catch (error) {
+        console.error('Ошибка отправки:', error);
+        showToast('❌ ' + error.message, 'error');
+        resultElement.textContent = '❌ ' + error.message;
+    } finally {
+        submitBtn.disabled = false;
+    }
+}</pre
+            >
+          </div>
+        </div>
+        <!-- Задача 4: Переключение темы -->
+        <div class="task task4">
+          <h3>4. Переключение темы</h3>
+          <p>
+            Реализуйте переключение между светлой и тёмной темой. Первая кнопка
+            в шапке управляет всей страницей. Вторая кнопка ниже — только этим
+            блоком. Выбор сохраняется в localStorage.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div style="gap: 15px" class="task-solution task4-solution">
+              <div class="result-output">
+                <pre id="tempResult">
+Для смены темы нажмите преключить тему</pre
+                >
+              </div>
+
+              <button id="localThemeToggle" class="theme-toggle-btn2">
+                Переключить тему
+              </button>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn4"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode4', 'toggleCodeBtn4')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode4" class="code-block hidden">
+// См. реализацию в tasks/task4/task4.js</pre
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../partials/footer.js"></script>
+    <script src="./index.js"></script>
+    <script src="../index.js"></script>
+    <script src="./tasks/task1/task1.js"></script>
+    <script src="./tasks/task2/task2.js"></script>
+    <script src="./tasks/task3/task3.js"></script>
+    <script src="./tasks/task4/task4.js"></script>
+  </body>
 </html>

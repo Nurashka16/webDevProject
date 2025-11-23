@@ -17,7 +17,7 @@ body {
 
 /* Шапка */
 .header {
-    background-color: var(--header-bg);
+    background-color: var(--bg-theme);
     /* height: 58px; */
     width: 100%;
     padding: 5px 0;
@@ -78,7 +78,7 @@ body {
 
 /* Футер */
 .footer {
-    background-color: var(--footer-bg);
+    background-color: var(--bg-theme);
     color: var(--text-light);
     display: flex;
     align-items: center;

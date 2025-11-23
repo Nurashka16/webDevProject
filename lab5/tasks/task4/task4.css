@@ -1,0 +1,44 @@
+.theme-toggle-btn2 {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+.theme-toggle-btn2:hover {
+    background-color: var(--accent-color);
+}
+
+#themeStatus {
+    text-align: center;
+    margin: 0;
+    color: var(--primary-color);
+}
+#themeToggleTop {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    padding-bottom: 5px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+#themeToggleBottom {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+#themeToggleBottom:hover {
+    background-color: var(--accent-color);
+}

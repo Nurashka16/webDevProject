@@ -9,7 +9,7 @@
     --footer-bg: #0a3d62;          /* Как primary */
     --text-light: #fff;            /* Белый для контраста */
     --border-color: #b3d9f7;       /* Светлая граница — как переход в градиенте */
-
+    --bg-theme: #0a3d62; 
     /* Шрифты */
     --font-main: 'Arial', sans-serif;
     --font-size-base: 16px;
@@ -29,4 +29,18 @@
 
     /* Градиент для фона (если нужно) */
     --gradient-bg: linear-gradient(180deg, #0a3d62 0%, #b3d9f7 100%);
+}
+[data-theme="dark"] {
+    --bg-color: #111827;
+    --text-color: #000000;
+    --primary-color: #023d8a;
+    --secondary-color: #0a3869;
+    --accent-color: #01152e;
+    --border-color: #374151;
+    --card-bg: #1f2937;
+    --header-bg: #111827;
+    --shadow: 0 4px 6px rgba(0,0,0,0.3);
+    --bg-theme: #06233d;
+    --header-bg: #06233d;
+
 }
