@@ -1,29 +1,22 @@
-.task2-like-dislike-calculator {
-    display: flex;
-    align-items: center;
+.task2-solution {
     flex-direction: row;
+    align-items: center;
     justify-content: center;
     gap: 60px;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    max-width: 600px;
-    margin: 0 auto;
 }
 
-.like-btn2, .dislike-btn2 {
+.like-btn2,
+.dislike-btn2 {
     font-size: 1.5rem;
     padding: 10px;
-    border: none; 
+    border: none;
     border-radius: 8px;
     cursor: pointer;
     background: white;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    fill: transparent;
+    transition: all 0.2s;
 }
 
 .like-btn2.active {
@@ -31,15 +24,10 @@
 }
 
 .dislike-btn2.active {
-    background: #dd5f5f; 
+    background: #dd5f5f;
 }
 
-.like-icon2 {
-    width: 32px;
-    height: 32px;
-    transition: fill 0.2s;
-}
-
+.like-icon2,
 .dislike-icon2 {
     width: 32px;
     height: 32px;
@@ -51,5 +39,5 @@
 }
 
 .dislike-btn2.active .dislike-icon2 {
-    fill: white; 
+    fill: white;
 }

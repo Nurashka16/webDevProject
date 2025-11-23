@@ -80,14 +80,10 @@ body {
 .footer {
     background-color: var(--footer-bg);
     color: var(--text-light);
-    height: var(--footer-height);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: auto;
-    margin-top: 12px;
-    padding: 0px 0;
-    height: 48px;
 }
 
 /* Приветствие */
@@ -124,7 +120,7 @@ body {
 .cat-container {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     display: flex;
     align-items: center;
     animation: waveHat 3s infinite;
@@ -134,7 +130,9 @@ body {
     font-size: 3rem;
     animation: tipHat 2s infinite;
 }
-
+.hat{
+    margin-bottom: -15px;
+}
 @keyframes waveHat {
 
     0%,
