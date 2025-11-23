@@ -830,7 +830,14 @@ myFilterArray(['Short', 'VeryLong'], isFirstV) → ['VeryLong']</pre
                 </div>
                 <div class="input-group task10-input-group">
                   <label for="filterSelect">Фильтр:</label>
-                  <select id="filterSelect">
+                  <select
+                    style="
+                      height: 35px;
+                      border: 2px solid var(--secondary-color);
+                      border-radius: 4px;
+                    "
+                    id="filterSelect"
+                  >
                     <option value="startsWithV">Начинается с 'V'</option>
                     <option value="isLongerThan5">Длина > 5</option>
                     <option value="isEvenNumber">Чётное число</option>

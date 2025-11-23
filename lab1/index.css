@@ -1,5 +1,4 @@
 .main {
-    
 }
 
 .lab-content {
@@ -12,6 +11,7 @@
     text-align: center;
     padding-bottom: 24px;
 }
+
 /* Общие стили */
 .task {
     background: white;
@@ -62,7 +62,7 @@ code {
 .division-checker,
 .sandwich-calculator,
 .absolute-calculator,
- .random-generator,
+.random-generator,
 .array-sampler,
 .array-filter,
 .float-comparator {
@@ -172,6 +172,7 @@ code {
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
+
 /* Общие стили для кнопки "Показать/Скрыть код" */
 .toggle-code-btn {
     background-color: var(--secondary-color);

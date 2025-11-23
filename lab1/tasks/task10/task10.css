@@ -8,7 +8,11 @@
 }
 
 .task10-input-group {
+    height: 100%;
     max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .task10-input-group input,
@@ -22,7 +26,7 @@
 }
 
 .task10-input-group textarea {
-    height: 80px;
+    height: 120px;
     text-align: left;
     font-family: monospace;
     resize: vertical;
