@@ -1,0 +1,334 @@
+/* =============================
+   ОБЩИЕ СТИЛИ ЗАДАЧ (как в lab2)
+   ============================= */
+.lab-content {
+    background-color: var(--bg-color);
+    box-shadow: none;
+    padding-top: 0;
+}
+.task {
+    margin-top: 24px;
+    background: white;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.task h3 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+}
+
+.task p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.solution-wrapper {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eef3f1;
+    padding-bottom: 10px;
+}
+
+.solution-title {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Кнопка "Показать/Скрыть код" */
+.toggle-code-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.toggle-code-btn:hover {
+    background-color: var(--accent-color);
+}
+
+/* Блок кода */
+pre.code-block {
+    overflow-x: auto;
+    white-space: pre;
+    font-family: monospace;
+    line-height: 1.4;
+    background: #f0f9ff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 10px;
+    max-height: 300px;
+    min-height: 60px;
+    position: relative;
+}
+
+pre.code-block.hidden {
+    display: none;
+}
+
+pre.code-block.visible {
+    display: block;
+}
+
+/* Скроллбар — WebKit */
+pre.code-block::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+pre.code-block::-webkit-scrollbar-track {
+    background: #e9f5ff;
+    border-radius: 6px;
+    border: 1px solid #d0e8ff;
+}
+
+pre.code-block::-webkit-scrollbar-thumb {
+    background: #d0e8ff;
+    border-radius: 6px;
+    border: 3px solid #e9f5ff;
+    min-height: 30px;
+}
+
+pre.code-block::-webkit-scrollbar-thumb:hover {
+    background: #2a70c2;
+}
+
+/* Скроллбар — Firefox */
+pre.code-block {
+    scrollbar-width: thin;
+    scrollbar-color: #4a90e2 #e9f5ff;
+}
+
+code {
+    background: #eef7ff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+/* =============================
+   СПЕЦИФИЧНЫЕ СТИЛИ LAB3
+   ============================= */
+
+/* Обёртка для решения */
+.task-solution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Кнопка открытия формы */
+.register-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+    background-color: var(--accent-color);
+}
+
+/* Модальное окно */
+.modal {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    z-index: 1000;
+}
+
+.modal::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+/* Шапка модалки */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--accent-color);
+}
+
+/* Форма */
+#registrationForm {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+label span {
+    color: var(--accent-color);
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+/* Поля ввода */
+input {
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+/* Кастомные состояния валидации (вместо :user-valid) */
+input.valid {
+    border-color: #2e7d32;
+    background-color: #f1f8e9;
+}
+
+input.invalid {
+    border-color: #d32f2f;
+    background-color: #ffebee;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    color: #d32f2f;
+    font-size: 0.875rem;
+    min-height: 1.2em;
+    margin-top: 4px;
+    line-height: 1.2;
+}
+
+/* Поле пароля */
+.password-field {
+    position: relative;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 4px;
+    border-radius: 4px;
+    color: var(--text-color);
+}
+
+.toggle-password-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* Кнопки действий */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.form-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.form-actions button[type="submit"] {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.form-actions button[type="submit"]:hover {
+    background-color: var(--accent-color);
+}
+
+.form-actions button[type="button"] {
+    background-color: #e0e0e0;
+    color: var(--text-color);
+}
+
+.form-actions button[type="button"]:hover {
+    background-color: #d0d0d0;
+}

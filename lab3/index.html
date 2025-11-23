@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторная работа #3 — Валидация форм</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./index.css" />
+</head>
+<body>
+    <script src="../partials/header.js"></script>
+
+    <main class="main">
+        <div class="lab-content">
+            <div class="title">
+                <h1>Лабораторная работа #3</h1>
+                <p style="text-align: center;">Изучить работу с формами и их событиями, освоить использование Constraint Validation API.</p>
+            </div>
+
+            <div class="task task3">
+                <h3>1. Валидация формы</h3>
+                <p>
+                    Реализовать форму регистрации в модальном окне с использованием элемента
+                    //code>dialog>code// . Все поля обязательны к заполнению.
+                    Пароль должен содержать не менее 6 символов.
+                    Валидация — через HTML5-атрибуты и кастомную обработку ошибок с помощью JavaScript.
+                    Обеспечить полную доступность формы (aria-атрибуты, фокус, живые регионы).
+                </p>
+
+                <div class="solution-wrapper">
+                    <h3 class="solution-title">Решение:</h3>
+                    <div class="task-solution">
+                        <button id="openModalBtn" class="register-btn">Открыть форму регистрации</button>
+
+                        <!-- Модальное окно -->
+                        <dialog id="registrationModal" class="modal">
+                            <div class="modal-content">
+                                <header class="modal-header">
+                                    <h2>Регистрация</h2>
+                                    <button id="closeModalBtn" class="close-btn" aria-label="Закрыть">&times;</button>
+                                </header>
+                                <form id="registrationForm" novalidate>
+                                    <div class="form-group">
+                                        <label for="name">Имя <span>(обязательно)</span></label>
+                                        <input type="text" id="name" name="name" required aria-describedby="name-error" />
+                                        <div id="name-error" class="error-message" role="alert" aria-live="polite" hidden></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email <span>(обязательно)</span></label>
+                                        <input type="email" id="email" name="email" required aria-describedby="email-error" />
+                                        <div id="email-error" class="error-message" role="alert" aria-live="polite" hidden></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Пароль <span>(обязательно, минимум 6 символов)</span></label>
+                                        <div class="password-field">
+                                            <input type="password" id="password" name="password" required minlength="6" aria-describedby="password-error" />
+                                            <button type="button" id="togglePasswordBtn" class="toggle-password-btn" aria-label="Показать пароль">👁️</button>
+                                        </div>
+                                        <div id="password-error" class="error-message" role="alert" aria-live="polite" hidden></div>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="submit">Зарегистрироваться</button>
+                                        <button type="button" id="cancelModalBtn">Отмена</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+
+                <div class="solution-wrapper">
+                    <h3 class="solution-title">Код функции:</h3>
+                    <button
+                        id="toggleCodeBtn"
+                        class="toggle-code-btn"
+                        onclick="toggleFunctionCode('functionCode', 'toggleCodeBtn')"
+                    >
+                        Показать код
+                    </button>
+                    <pre id="functionCode" class="code-block hidden">
+document.addEventListener('DOMContentLoaded', function () {
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const registrationModal = document.getElementById('registrationModal');
+    const registrationForm = document.getElementById('registrationForm');
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const passwordInput = document.getElementById('password');
+
+    let isPasswordVisible = false;
+
+    openModalBtn.addEventListener('click', () => {
+        registrationModal.showModal();
+        document.getElementById('name').focus();
+    });
+
+    const closeModal = () => registrationModal.close();
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelModalBtn.addEventListener('click', closeModal);
+
+    registrationModal.addEventListener('click', (e) => {
+        if (e.target === registrationModal) closeModal();
+    });
+
+    const hidePassword = () => {
+        if (isPasswordVisible) {
+            passwordInput.type = 'password';
+            isPasswordVisible = false;
+            togglePasswordBtn.setAttribute('aria-label', 'Показать пароль');
+        }
+    };
+
+    togglePasswordBtn.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        passwordInput.type = 'text';
+        isPasswordVisible = true;
+        togglePasswordBtn.setAttribute('aria-label', 'Скрыть пароль');
+    });
+
+    togglePasswordBtn.addEventListener('pointerup', hidePassword);
+    togglePasswordBtn.addEventListener('pointerleave', hidePassword);
+
+    const validateField = (field) => {
+        const errorElement = document.getElementById(field.id + '-error');
+        const isValid = field.checkValidity();
+
+        if (!isValid) {
+            field.classList.add('invalid');
+            field.classList.remove('valid');
+            field.setAttribute('aria-invalid', 'true');
+            errorElement.textContent = field.validationMessage;
+            errorElement.hidden = false;
+        } else {
+            field.classList.add('valid');
+            field.classList.remove('invalid');
+            field.removeAttribute('aria-invalid');
+            errorElement.hidden = true;
+            errorElement.textContent = '';
+        }
+        return isValid;
+    };
+
+    registrationForm.querySelectorAll('input').forEach((input) => {
+        input.addEventListener('blur', () => validateField(input));
+    });
+
+    registrationForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+        registrationForm.querySelectorAll('input').forEach((input) => {
+            if (!validateField(input)) isValid = false;
+        });
+
+        if (isValid) {
+            const formData = new FormData(registrationForm);
+            console.log('Данные формы:', Object.fromEntries(formData.entries()));
+            alert('Регистрация успешна!');
+            registrationForm.reset();
+            registrationForm.querySelectorAll('input').forEach((input) => {
+                input.classList.remove('valid', 'invalid');
+                input.removeAttribute('aria-invalid');
+            });
+            closeModal();
+        } else {
+            const firstInvalid = registrationForm.querySelector('.invalid');
+            if (firstInvalid) firstInvalid.focus();
+        }
+    });
+});</pre>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../partials/footer.js"></script>
+
+    <script src="./index.js"></script>
+        <script src="../index.js"></script>
+
+</body>
+</html>
