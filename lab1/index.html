@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторная работа #1</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./tasks/task1/task1.css" />
+    <link rel="stylesheet" href="./tasks/task2/task2.css" />
+    <link rel="stylesheet" href="./tasks/task3/task3.css" />
+    <link rel="stylesheet" href="./tasks/task4/task4.css" />
+    <link rel="stylesheet" href="./tasks/task5/task5.css" />
+    <link rel="stylesheet" href="./tasks/task6/task6.css" />
+    <link rel="stylesheet" href="./tasks/task7/task7.css" />
+    <link rel="stylesheet" href="./tasks/task8/task8.css" />
+    <link rel="stylesheet" href="./tasks/task9/task9.css" />
+    <link rel="stylesheet" href="./tasks/task10/task10.css" />
+    <link rel="stylesheet" href="./tasks/task11/task11.css" />
+  </head>
+  <body>
+    <script src="../partials/header.js"></script>
+
+    <main class="main">
+      <div class="lab-content">
+        <div class="title">
+          <h1>Лабораторная работа #1</h1>
+          <p>Основы JS: переменные, типы данных, операторы</p>
+        </div>
+
+        <div id="task-container">
+          <!-- Задача 1 -->
+          <div class="task task1">
+            <h3>1. Функция конвертации температуры</h3>
+            <p>
+              Напишите функцию <code>convertTemperature</code>, которая
+              принимает два параметра: значение температуры и направление
+              преобразования. Функция возвращает в виде строки температуру в
+              других единицах измерения.
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>convertTemperature(32, 'toC') → '0 C'<br>convertTemperature(10, 'toF') → '50 F'</pre>
+            </div>
+
+            <!-- Решение задачи -->
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="temperature-converter task1-temperature-converter">
+                <!-- Выбор исходной единицы -->
+                <div class="select-wrapper task1-select-wrapper">
+                  <select id="fromUnit">
+                    <option value="C">Градус Цельсия</option>
+                    <option value="F">Градус Фаренгейта</option>
+                  </select>
+                </div>
+
+                <!-- Ввод значения -->
+                <div class="input-box task1-input-box">
+                  <input
+                    type="number"
+                    id="inputTemp"
+                    value="-15"
+                    placeholder="Введите температуру"
+                  />
+                </div>
+
+                <!-- Кнопка "Посчитать" -->
+                <button
+                  class="solve-btn task1-solve-btn"
+                  onclick="updateTemperatureResult()"
+                >
+                  Посчитать
+                </button>
+                <div class="result-output task1-result-output">
+                  <pre id="temperatureResult">
+Выберите градус и введите температуру и нажмите "Посчитать"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Показ кода функции -->
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn1"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode1', 'toggleCodeBtn1')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode1"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function convertTemperature(temp, direction) {
+    if (direction === 'toC') {
+        const celsius = (temp - 32) * 5 / 9;
+        return Math.round(celsius) + ' C';
+    }
+    else if (direction === 'toF') {
+        const fahrenheit = (temp * 9 / 5) + 32;
+        return Math.round(fahrenheit) + ' F';
+    }
+    return 'Invalid input';
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 2 -->
+          <div class="task task2">
+            <h3>2. Треугольник</h3>
+            <p>
+              По трем сторонам треугольника проверить возможность его
+              существования, если такой треугольник возможен, то рассчитать его
+              периметр, площадь и отношение периметра к площади. Для решения
+              задачи вам нужна формула Герона и метод <code>Math.sqrt()</code>,
+              который возвращает квадратный корень числа.
+            </p>
+            <div class="example">
+              <p><strong>В консоль требуется вывести:</strong></p>
+              <pre>
+> треугольник существует
+> периметр = __
+> Площадь = __
+> Соотношение = __
+> треугольника не существует</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="triangle-calculator task2-triangle-calculator">
+                <div class="input-group task2-input-group">
+                  <label for="sideA">Сторона A:</label>
+                  <input
+                    type="number"
+                    id="sideA"
+                    value="3"
+                    placeholder="Введите сторону A"
+                  />
+                </div>
+                <div class="input-group task2-input-group">
+                  <label for="sideB">Сторона B:</label>
+                  <input
+                    type="number"
+                    id="sideB"
+                    value="4"
+                    placeholder="Введите сторону B"
+                  />
+                </div>
+                <div class="input-group task2-input-group">
+                  <label for="sideC">Сторона C:</label>
+                  <input
+                    type="number"
+                    id="sideC"
+                    value="5"
+                    placeholder="Введите сторону C"
+                  />
+                </div>
+                <button
+                  class="solve-btn task2-solve-btn"
+                  onclick="updateTriangleResult()"
+                >
+                  Проверить
+                </button>
+                <div class="result-output task2-result-output">
+                  <pre id="triangleResult">
+Введите стороны и нажмите "Проверить"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn2"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode2', 'toggleCodeBtn2')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode2"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function checkTriangle(a, b, c) {
+    if (a + b > c &amp;&amp; a + c > b &amp;&amp; b + c > a) {
+        const perimeter = a + b + c;
+        const s = perimeter / 2;
+        const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        const ratio = perimeter / area;
+        return {
+            exists: true,
+            perimeter: perimeter.toFixed(5),
+            area: area.toFixed(5),
+            ratio: ratio.toFixed(5)
+        };
+    } else {
+        return { exists: false };
+    }
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 3 -->
+          <div class="task task3">
+            <h3>3. Fizz-Buzz</h3>
+            <p>
+              Создайте переменную с целым числом и напишите цикл, который
+              проходит от 0 до указанного в переменной значения и если текущее
+              значение четно, то в консоль выводится <code>buzz</code>, если
+              нечетно <code>fizz</code>, если число делится на 5 -
+              <code>fizz buzz</code>.
+            </p>
+            <div class="example">
+              <p><strong>Пример вывода:</strong></p>
+              <pre>
+> "0 buzz"
+> "1 fizz"
+> "2 buzz"
+> "3 fizz"
+> "4 buzz"
+> "5 fizz buzz"
+...</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="fizzbuzz-calculator task3-fizzbuzz-calculator">
+                <div class="input-group task3-input-group">
+                  <label for="fizzBuzzInput">Введите число:</label>
+                  <input
+                    type="number"
+                    id="fizzBuzzInput"
+                    value="10"
+                    placeholder="Введите число"
+                  />
+                </div>
+                <button
+                  class="solve-btn task3-solve-btn"
+                  onclick="updateFizzBuzzResult()"
+                >
+                  Запустить
+                </button>
+                <div class="result-output task3-result-output">
+                  <pre id="fizzBuzzResult">
+Введите число и нажмите "Запустить"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn3"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode3', 'toggleCodeBtn3')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode3"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function generateFizzBuzz(num) {
+    let result = [];
+    for (let i = 0; i <= num; i++) {
+        if (i % 5 === 0) {
+            result.push(`"${i} fizz buzz"`);
+        } else if (i % 2 === 0) {
+            result.push(`"${i} buzz"`);
+        } else {
+            result.push(`"${i} fizz"`);
+        }
+    }
+    return result;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 4 -->
+          <div class="task task4">
+            <h3>4. Елка</h3>
+            <p>
+              Напишите программу, которая создает одну строку, представляющую
+              елку, используя для разделения строк символы новой строки. В слоях
+              елки чередуются "*" и "#", и на каждой строке символов больше на
+              один, а в последнем слое ствол из символов <code>||</code>.
+            </p>
+            <div class="example">
+              <p><strong>Пример вывода:</strong></p>
+              <pre>
+*
+##
+***
+####
+*****
+######
+*******
+########
+*********
+##########
+***********
+############
+||</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="tree-generator task4-tree-generator">
+                <div class="input-group task4-input-group">
+                  <label for="treeHeight">Высота елки:</label>
+                  <input
+                    type="number"
+                    id="treeHeight"
+                    value="6"
+                    placeholder="Введите высоту"
+                  />
+                </div>
+                <button
+                  class="solve-btn task4-solve-btn"
+                  onclick="updateTreeResult()"
+                >
+                  Нарисовать
+                </button>
+                <div class="result-output task4-result-output">
+                  <pre id="treeResult">
+Введите высоту и нажмите "Нарисовать"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn4"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode4', 'toggleCodeBtn4')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode4"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function generateTree(height) {
+    let result = [];
+    for (let i = 1; i <= height; i++) {
+        let line = '';
+        for (let j = 0; j < i; j++) {
+            if (i % 2 === 1) {
+                line += '*';
+            } else {
+                line += '#';
+            }
+        }
+        result.push(line);
+    }
+    result.push('||');
+    return result;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 5 -->
+          <div class="task task5">
+            <h3>5. Деление</h3>
+            <p>
+              Напишите код, который проверяет, делится ли нацело число
+              <code>n</code> на два числа <code>x</code> И <code>y</code>. Все
+              входные данные - положительные ненулевые числа и хранятся в
+              переменных.
+            </p>
+            <div class="example">
+              <p><strong>Пример вывода:</strong></p>
+              <pre>
+> n =   3, x = 1, y = 3 =>  true
+> n =  12, x = 2, y = 6 =>  true
+> n = 100, x = 5, y = 3 => false
+> n =  12, x = 7, y = 5 => false</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="division-checker task5-division-checker">
+                <div class="input-group task5-input-group">
+                  <label for="n">n:</label>
+                  <input
+                    type="number"
+                    id="n"
+                    value="12"
+                    placeholder="Введите n"
+                  />
+                </div>
+                <div class="input-group task5-input-group">
+                  <label for="x">x:</label>
+                  <input
+                    type="number"
+                    id="x"
+                    value="2"
+                    placeholder="Введите x"
+                  />
+                </div>
+                <div class="input-group task5-input-group">
+                  <label for="y">y:</label>
+                  <input
+                    type="number"
+                    id="y"
+                    value="6"
+                    placeholder="Введите y"
+                  />
+                </div>
+                <button
+                  class="solve-btn task5-solve-btn"
+                  onclick="updateDivisionResult()"
+                >
+                  Проверить
+                </button>
+                <div class="result-output task5-result-output">
+                  <pre id="divisionResult">
+Введите числа и нажмите "Проверить"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn5"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode5', 'toggleCodeBtn5')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode5"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function checkDivision(n, x, y) {
+    const result = n % x === 0 &amp;&amp; n % y === 0;
+    return `n = ${n}, x = ${x}, y = ${y} => ${result}`;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 6 -->
+          <div class="task task6">
+            <h3>6. Сэндвичи с сыром</h3>
+            <p>
+              Для сэндвича требуется два ломтика хлеба и один ломтик сыра.
+              Напишите функцию, которая посчитает максимально возможное
+              количество сэндвичей. Информация о количестве ингридиентов
+              хранится в объекте.
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>countSandwiches({bread: 5, cheese: 6}) → 2</pre>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="sandwich-calculator task6-sandwich-calculator">
+                <div class="input-group task6-input-group">
+                  <label for="bread">Хлеб:</label>
+                  <input
+                    type="number"
+                    id="bread"
+                    value="5"
+                    placeholder="Кол-во хлеба"
+                  />
+                </div>
+                <div class="input-group task6-input-group">
+                  <label for="cheese">Сыр:</label>
+                  <input
+                    type="number"
+                    id="cheese"
+                    value="6"
+                    placeholder="Кол-во сыра"
+                  />
+                </div>
+                <button
+                  class="solve-btn task6-solve-btn"
+                  onclick="updateSandwichResult()"
+                >
+                  Посчитать
+                </button>
+                <div class="result-output task6-result-output">
+                  <pre id="sandwichResult">
+Введите кол-во ингредиентов и нажмите "Посчитать"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn6"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode6', 'toggleCodeBtn6')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode6"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function countSandwiches(ingredients) {
+    const { bread, cheese } = ingredients;
+    const maxFromBread = Math.floor(bread / 2);
+    return Math.min(maxFromBread, cheese);
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 7 -->
+          <div class="task task7">
+            <h3>7. Абсолютное значение</h3>
+            <p>
+              Напишите функцию <code>absValue</code> без
+              <code>Math.abs(x)</code>, которая в качестве параметра принимает
+              число и возвращает его абсолютное значение (по модулю).
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>
+absValue(-2) → 2
+absValue(100) → 100
+absValue(0) → 0</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="absolute-calculator task7-absolute-calculator">
+                <div class="input-group task7-input-group">
+                  <label for="absInput">Введите число:</label>
+                  <input
+                    type="number"
+                    id="absInput"
+                    value="-5"
+                    placeholder="Введите число"
+                  />
+                </div>
+                <button
+                  class="solve-btn task7-solve-btn"
+                  onclick="updateAbsoluteResult()"
+                >
+                  Посчитать
+                </button>
+                <div class="result-output task7-result-output">
+                  <pre id="absResult">Введите число и нажмите "Посчитать"</pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn7"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode7', 'toggleCodeBtn7')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode7"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function absValue(num) {
+    return num < 0 ? -num : num;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 8 -->
+          <div class="task task8">
+            <h3>8. Случайные числа</h3>
+            <p>
+              Используя методы объекта Math создать функцию, которая возвращает
+              целое случайно сгенерированное число в диапазоне от
+              <code>min</code> до <code>max</code>.
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>
+randomNumber(0, 10) → 3
+randomNumber(-10, 10) → -4</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="random-generator task8-random-generator">
+                <div class="input-group task8-input-group">
+                  <label for="min">min:</label>
+                  <input
+                    type="number"
+                    id="min"
+                    value="0"
+                    placeholder="Минимум"
+                  />
+                </div>
+                <div class="input-group task8-input-group">
+                  <label for="max">max:</label>
+                  <input
+                    type="number"
+                    id="max"
+                    value="10"
+                    placeholder="Максимум"
+                  />
+                </div>
+                <button
+                  class="solve-btn task8-solve-btn"
+                  onclick="updateRandomResult()"
+                >
+                  Сгенерировать
+                </button>
+                <div class="result-output task8-result-output">
+                  <pre id="randomResult">
+Введите диапазон и нажмите "Сгенерировать"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn8"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode8', 'toggleCodeBtn8')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode8"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 9 -->
+          <div class="task task9">
+            <h3>9. Значения из массива</h3>
+            <p>
+              Используя функцию из прошлой задачи, реализовать функцию, которая
+              возвращает случайные значения из массива в заданном количестве в
+              виде нового массива.
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>
+sampleArray([1,2,3,4], 2) → [3, 4]
+sampleArray([1,2,3,4], 3) → [2, 2, 1]</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="array-sampler task9-array-sampler">
+                <div class="input-group task9-input-group">
+                  <label for="arrayInput">Массив:</label>
+                  <input
+                    type="text"
+                    id="arrayInput"
+                    value="1,2,3,4"
+                    placeholder="Введите числа через запятую"
+                  />
+                </div>
+                <div class="input-group task9-input-group">
+                  <label for="count">Кол-во:</label>
+                  <input
+                    type="number"
+                    id="count"
+                    value="2"
+                    placeholder="Сколько выбрать"
+                  />
+                </div>
+                <button
+                  class="solve-btn task9-solve-btn"
+                  onclick="updateArrayResult()"
+                >
+                  Выбрать
+                </button>
+                <div class="result-output task9-result-output">
+                  <pre id="arrayResult">
+Введите массив и кол-во и нажмите "Выбрать"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn9"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode9', 'toggleCodeBtn9')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode9"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function getRandomElement(arr) {
+    const randomIndex = randomNumber(0, arr.length - 1);
+    return arr[randomIndex];
+}
+
+function sampleArray(arr, num) {
+    const result = [];
+    for (let i = 0; i < num; i++) {
+        result.push(getRandomElement(arr));
+    }
+    return result;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 10 -->
+          <div class="task task10">
+            <h3>10. Фильтрация массива</h3>
+            <p>
+              Напишите функцию, которая является аналогом метода
+              <code>filter</code> у массива. Функция в качестве параметров
+              принимает сам массив и функцию-фильтр, а возвращает новый массив с
+              элементами прошедшими отбор.
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>
+function isFirstV(name) {
+  return name.startsWith('V')
+}
+
+myFilterArray(['Short', 'VeryLong'], isFirstV) → ['VeryLong']</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="array-filter task10-array-filter">
+                <div class="input-group task10-input-group">
+                  <label for="filterArray">Массив (через запятую):</label>
+                  <input
+                    type="text"
+                    id="filterArray"
+                    value="Short,VeryLong"
+                    placeholder="Short,VeryLong"
+                  />
+                </div>
+                <div class="input-group task10-input-group">
+                  <label for="filterSelect">Фильтр:</label>
+                  <select id="filterSelect">
+                    <option value="startsWithV">Начинается с 'V'</option>
+                    <option value="isLongerThan5">Длина > 5</option>
+                    <option value="isEvenNumber">Чётное число</option>
+                  </select>
+                </div>
+                <button
+                  class="solve-btn task10-solve-btn"
+                  onclick="updateFilterResult()"
+                >
+                  Фильтровать
+                </button>
+                <div class="result-output task10-result-output">
+                  <pre id="filterResult">
+Введите массив, выберите фильтр и нажмите "Фильтровать"</pre
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn10"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode10', 'toggleCodeBtn10')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode10"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function myFilterArray(arr, func) {
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
+}</pre
+              >
+            </div>
+          </div>
+
+          <!-- Задача 11 -->
+          <div class="task task11">
+            <h3>11. Равенство чисел с плавающей запятой</h3>
+            <p>
+              Напишите функцию <code>toBeCloseTo</code>, которая принимает два
+              числа (<code>num1</code> и <code>num2</code>) в качестве
+              аргументов и возвращает <code>true</code>, если они приблизительно
+              равны, и <code>false</code> в противном случае. Может понадобиться
+              <code>Number.EPSILON</code>.
+            </p>
+            <div class="example">
+              <p><strong>Пример работы:</strong></p>
+              <pre>
+toBeCloseTo(0.1, 0.10000000000000001) → true
+toBeCloseTo(0.1, 0.2) → false
+toBeCloseTo(1, 1.0000000000000002) → true</pre
+              >
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Решение:</h3>
+              <div class="float-comparator task11-float-comparator">
+                <div class="input-group task11-input-group">
+                  <label for="num1">num1:</label>
+                  <input
+                    type="number"
+                    id="num1"
+                    value="0.1"
+                    placeholder="Число 1"
+                  />
+                </div>
+                <div class="input-group task11-input-group">
+                  <label for="num2">num2:</label>
+                  <input
+                    type="number"
+                    id="num2"
+                    value="0.2"
+                    placeholder="Число 2"
+                  />
+                </div>
+                <button
+                  class="solve-btn task11-solve-btn"
+                  onclick="updateFloatResult()"
+                >
+                  Сравнить
+                </button>
+                <div class="result-output task11-result-output">
+                  <pre id="floatResult">Введите числа и нажмите "Сравнить"</pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="solution-wrapper">
+              <h3 class="solution-title">Код функции:</h3>
+              <button
+                id="toggleCodeBtn11"
+                class="solve-btn toggle-code-btn"
+                onclick="toggleFunctionCode('functionCode11', 'toggleCodeBtn11')"
+              >
+                Показать код
+              </button>
+              <pre
+                id="functionCode11"
+                style="
+                  display: none;
+                  background: #f0f9ff;
+                  border: 1px solid var(--border-color);
+                  padding: 12px;
+                  margin-top: 10px;
+                "
+              >
+function toBeCloseTo(num1, num2) {
+    const diff = Math.abs(num1 - num2);
+    const epsilon = Number.EPSILON * Math.max(1, Math.abs(num1), Math.abs(num2));
+    return diff < epsilon;
+}</pre
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+    <script src="../index.js"></script>
+    <script src="./tasks/task1/task1.js"></script>
+    <script src="./tasks/task2/task2.js"></script>
+    <script src="./tasks/task3/task3.js"></script>
+    <script src="./tasks/task4/task4.js"></script>
+    <script src="./tasks/task5/task5.js"></script>
+    <script src="./tasks/task6/task6.js"></script>
+    <script src="./tasks/task7/task7.js"></script>
+    <script src="./tasks/task8/task8.js"></script>
+    <script src="./tasks/task9/task9.js"></script>
+    <script src="./tasks/task10/task10.js"></script>
+    <script src="./tasks/task11/task11.js"></script>
+    <script src="../partials/footer.js"></script>
+  </body>
+</html>
