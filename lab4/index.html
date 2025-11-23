@@ -1,11 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>Promise</h1>
-</body>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторная работа #4 — Промисы</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./tasks/task1/task1.css" />
+    <link rel="stylesheet" href="./tasks/task2/task2.css" />
+    <link rel="stylesheet" href="./tasks/task3/task3.css" />
+  </head>
+  <body>
+    <script src="../partials/header.js"></script>
+
+    <main class="main">
+      <div class="lab-content">
+        <div class="title">
+          <h1>Лабораторная работа #4</h1>
+          <p>Изучить работу с промисами и асинхронным программированием.</p>
+        </div>
+
+        <!-- Задача 1: Resolve -->
+        <div class="task task1">
+          <h3>1. Resolve</h3>
+          <p>
+            В интерфейсе добавить кнопку, при нажатии на которую вызывается
+            функция <code>job</code>. Эта функция возвращает объект promise.
+            Promise должен разрешиться через 2 секунды после вызова функции job
+            и представляет строку “работа сделана” в данных, и эта же строка
+            отображается в виде текста в интерфейсе под кнопкой.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task1-solution">
+              <div class="result-output">
+                <pre id="jobResult">Нажмите кнопку для выполнения работы</pre>
+              </div>
+              <button id="jobBtn" class="job-btn">Выполнить работу</button>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn1"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode1', 'toggleCodeBtn1')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode1" class="code-block hidden">
+function job() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("работа сделана");
+        }, 2000);
+    });
+}
+
+function executeJob() {
+    const resultElement = document.getElementById('jobResult');
+    resultElement.textContent = "Выполняется...";
+    job().then(result => {
+        resultElement.textContent = result;
+    });
+}</pre
+            >
+          </div>
+        </div>
+
+        <!-- Задача 2: Случайные данные и ошибки -->
+        <div class="task task2">
+          <h3>2. Случайные данные и ошибки</h3>
+          <p>
+            Напишите функцию <code>getData</code>, которая в качестве аргумента
+            принимает вероятность появления ошибки (значение по умолчанию 0.5) и
+            строку с данными, в локальной области видимости к переданной строке
+            в начало добавляет "Синтетические данные: ", а возвращает функцию.
+            Возвращаемая функция в качестве аргумента принимает число, проверяет
+            что аргумент является числом (не забыть про NaN) и с указанной долей
+            вероятности возвращает либо данные, либо null.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task2-solution">
+              <div class="task2-input-group">
+                <label for="dataInput">Строка с данными:</label>
+                <input
+                  type="text"
+                  id="dataInput"
+                  value="тестовые данные"
+                  placeholder="Введите данные"
+                />
+              </div>
+              <div class="task2-input-group">
+                <label for="probabilityInput">Вероятность ошибки (0–1):</label>
+                <input
+                  type="text"
+                  id="probabilityInput"
+                  value="0.5"
+                  placeholder="Введите вероятность (0–1)"
+                />
+              </div>
+              <button id="getDataBtn" class="task2-solve-btn">
+                Получить данные
+              </button>
+              <div class="result-output">
+                <pre id="dataResult">
+Введите данные и нажмите "Получить данные"</pre
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn2"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode2', 'toggleCodeBtn2')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode2" class="code-block hidden">
+function getData(errorProbability = 0.5, dataString) {
+    const fullData = "Синтетические данные: " + dataString;
+
+    return function(number) {
+        if (typeof number !== 'number' || isNaN(number)) {
+            return null;
+        }
+        return Math.random() < errorProbability ? null : fullData;
+    };
+}</pre
+            >
+          </div>
+        </div>
+
+        <!-- Задача 3: Крафт -->
+        <div class="task task3">
+          <h3>3. Крафт</h3>
+          <p>
+            Создайте простую систему крафта, в которой пользователи могут
+            создавать виртуальные предметы. Для создания каждого предмета есть
+            определённое время, и может потребоваться сначала создать другие
+            предметы.
+          </p>
+          <p>
+            Пример: чтобы создать кирку — нужна палка и железный слиток. Чтобы
+            создать палку — нужно дерево. Чтобы создать слиток — нужна руда.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task3-solution">
+              <div class="inventory task3-inventory">
+                <h3>Инвентарь:</h3>
+                <div id="inventoryDisplay"></div>
+              </div>
+
+              <div class="craft-buttons task3-craft-buttons">
+                <div class="item-description">
+                  <button class="craft-btn task3-craft-btn" data-item="tree">
+                    Добавить дерево
+                  </button>
+                  <p class="description-text">Базовый ресурс</p>
+                </div>
+                <div class="item-description">
+                  <button class="craft-btn task3-craft-btn" data-item="ironOre">
+                    Добавить руду
+                  </button>
+                  <p class="description-text">Базовый ресурс</p>
+                </div>
+                <div class="item-description">
+                  <button class="craft-btn task3-craft-btn" data-item="stick">
+                    Создать палку
+                  </button>
+                  <p class="description-text">Требуется: <br />1 Дерево</p>
+                </div>
+                <div class="item-description">
+                  <button
+                    class="craft-btn task3-craft-btn"
+                    data-item="ironIngot"
+                  >
+                    Создать железный слиток
+                  </button>
+                  <p class="description-text">
+                    Требуется: <br />1 Железная руда
+                  </p>
+                </div>
+                <div class="item-description">
+                  <button class="craft-btn task3-craft-btn" data-item="pickaxe">
+                    Создать кирку
+                  </button>
+                  <p class="description-text">
+                    Требуется:<br />
+                    1 Палка + <br />1 Железный слиток
+                  </p>
+                </div>
+              </div>
+              <div style="margin-bottom: 20px" class="result-output">
+                <pre id="craftResult">
+Нажмите на кнопку, чтобы начать создание</pre
+                >
+              </div>
+              <div class="log-section">
+                <h3>Журнал действий:</h3>
+                <div id="craftingLog" class="crafting-log"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Код функции:</h3>
+            <button
+              id="toggleCodeBtn3"
+              class="toggle-code-btn"
+              onclick="toggleFunctionCode('functionCode3', 'toggleCodeBtn3')"
+            >
+              Показать код
+            </button>
+            <pre id="functionCode3" class="code-block hidden">
+// См. полную реализацию в tasks/task3/task3.js</pre
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../partials/footer.js"></script>
+    <script src="./index.js"></script>
+    <script src="../index.js"></script>
+    <script src="./tasks/task1/task1.js"></script>
+    <script src="./tasks/task2/task2.js"></script>
+    <script src="./tasks/task3/task3.js"></script>
+  </body>
 </html>
