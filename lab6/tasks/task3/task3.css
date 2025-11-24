@@ -1,0 +1,110 @@
+.temperature-calculator {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.display-value {
+    margin-top: 8px;
+    padding: 8px;
+    background: #f5f9ff;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.unit-selector {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8fdff;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.unit-selector label {
+    margin-right: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.unit-selector label:hover {
+    color: var(--primary-color);
+}
+
+.buttons-group {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.buttons-group button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+#addBtn {
+    background-color: #4caf50;
+    color: white;
+}
+
+#addBtn:hover {
+    background-color: #388e3c;
+}
+
+#subtractBtn {
+    background-color: #ff9800;
+    color: white;
+}
+
+#subtractBtn:hover {
+    background-color: #f57c00;
+}
+
+.result-container {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.error {
+    color: #f44336;
+    font-weight: bold;
+    margin-top: 10px;
+    min-height: 1.5em;
+}

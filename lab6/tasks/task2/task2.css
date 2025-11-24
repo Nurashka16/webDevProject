@@ -1,0 +1,80 @@
+.shape-calculator {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+.buttons-group {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.buttons-group button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#calculateAreaBtn {
+    background-color: #4caf50;
+    color: white;
+}
+
+#calculateAreaBtn:hover {
+    background-color: #388e3c;
+}
+
+#calculatePerimeterBtn {
+    background-color: #2196f3;
+    color: white;
+}
+
+#calculatePerimeterBtn:hover {
+    background-color: #1976d2;
+}
+
+.result-container {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.error {
+    color: #f44336;
+    font-weight: bold;
+    margin-top: 10px;
+    min-height: 1.5em;
+}

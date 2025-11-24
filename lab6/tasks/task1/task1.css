@@ -1,0 +1,91 @@
+.version-creator,
+.version-control {
+    width: 100%;
+    text-align: left;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#initialVersion {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#initialVersion:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+#createVersionBtn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+#createVersionBtn:hover {
+    background-color: var(--accent-color);
+}
+
+.hint {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-top: 5px;
+}
+
+.error {
+    color: #f44336;
+    font-weight: bold;
+    margin-top: 8px;
+    min-height: 1.5em;
+}
+
+.buttons-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.action-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    color: white;
+}
+
+.major-btn { background-color: #ff9800; }
+.major-btn:hover { background-color: #f57c00; }
+
+.minor-btn { background-color: #2196f3; }
+.minor-btn:hover { background-color: #1976d2; }
+
+.patch-btn { background-color: #4caf50; }
+.patch-btn:hover { background-color: #388e3c; }
+
+.rollback-btn { background-color: #f44336; }
+.rollback-btn:hover { background-color: #d32f2f; }
