@@ -1,11 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>Classes</h1>
-</body>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторная работа #6</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./tasks/task1/task1.css" />
+    <link rel="stylesheet" href="./tasks/task2/task2.css" />
+    <link rel="stylesheet" href="./tasks/task3/task3.css" />
+    <link rel="stylesheet" href="./tasks/task4/task4.css" />
+  </head>
+  <body>
+    <!-- Импорт шапки -->
+    <script src="../partials/header.js"></script>
+
+    <main class="main">
+      <div class="lab-content">
+        <div class="title">
+          <h1>Лабораторная работа #6</h1>
+          <p>Классы, прототипы, Server-Sent Events</p>
+        </div>
+
+        <!-- Задание 1: Версионирование -->
+        <div class="task task1" id="task1-container">
+          <h3>1. Версионирование</h3>
+          <p>
+            Реализуйте класс <code>VersionManager</code> для управления версиями
+            по схеме MAJOR.MINOR.PATCH. Поддерживайте методы увеличения версий и
+            отката к предыдущему состоянию.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task1-solution">
+              <div class="version-creator">
+                <h4>Создать версию</h4>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="initialVersion"
+                    placeholder="Например: 1.2.3"
+                  />
+                  <button id="createVersionBtn">Создать</button>
+                </div>
+                <p class="hint">
+                  Если оставить поле пустым, будет использована версия по
+                  умолчанию: <code>0.0.1</code>
+                </p>
+                <div id="versionError" class="error" hidden></div>
+              </div>
+
+              <div id="versionControl" class="version-control" hidden>
+                <h4>Текущая версия: <span id="currentVersion">0.0.1</span></h4>
+                <div class="buttons-group">
+                  <button class="action-btn major-btn" data-action="major">
+                    MAJOR ↑
+                  </button>
+                  <button class="action-btn minor-btn" data-action="minor">
+                    MINOR ↑
+                  </button>
+                  <button class="action-btn patch-btn" data-action="patch">
+                    PATCH ↑
+                  </button>
+                  <button
+                    class="action-btn rollback-btn"
+                    data-action="rollback"
+                  >
+                    ← Откат
+                  </button>
+                </div>
+                <div id="rollbackError" class="error" hidden></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Задание 2: Геометрия -->
+        <div class="task task2" id="task2-container">
+          <h3>2. Прямоугольник и квадрат</h3>
+          <p>
+            Введите размеры фигуры. Если стороны равны — будет создан квадрат.
+          </p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task2-solution">
+              <div class="shape-calculator">
+                <div class="input-group">
+                  <label for="width">Ширина:</label>
+                  <input
+                    type="number"
+                    id="width"
+                    placeholder="Введите ширину"
+                    min="0"
+                    step="any"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="height">Высота:</label>
+                  <input
+                    type="number"
+                    id="height"
+                    placeholder="Введите высоту"
+                    min="0"
+                    step="any"
+                  />
+                </div>
+
+                <div class="buttons-group">
+                  <button id="calculateAreaBtn">Площадь</button>
+                  <button id="calculatePerimeterBtn">Периметр</button>
+                </div>
+
+                <div id="shapeResult" class="result-container" hidden>
+                  <p>Тип фигуры: <strong id="shapeType"></strong></p>
+                  <p>Результат: <strong id="calculationResult"></strong></p>
+                </div>
+
+                <div id="shapeError" class="error" hidden></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Задание 3: Температура -->
+        <div class="task task3" id="task3-container">
+          <h3>3. Температура</h3>
+          <p>Работа с конвертацией температур и арифметическими операциями.</p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task3-solution">
+              <div class="temperature-calculator">
+                <div class="input-group">
+                  <label for="temp1">Температура 1 (°C):</label>
+                  <input
+                    type="number"
+                    id="temp1"
+                    step="any"
+                    placeholder="Введите значение"
+                  />
+                  <div class="display-value">
+                    Значение: <span id="displayTemp1">0.00</span>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label for="temp2">Температура 2 (°C):</label>
+                  <input
+                    type="number"
+                    id="temp2"
+                    step="any"
+                    placeholder="Введите значение"
+                  />
+                  <div class="display-value">
+                    Значение: <span id="displayTemp2">0.00</span>
+                  </div>
+                </div>
+
+                <div class="unit-selector">
+                  <p>Единица отображения:</p>
+                  <label
+                    ><input type="radio" name="unit" value="celsius" checked />
+                    °C</label
+                  >
+                  <label
+                    ><input type="radio" name="unit" value="kelvin" /> K</label
+                  >
+                  <label
+                    ><input type="radio" name="unit" value="fahrenheit" />
+                    °F</label
+                  >
+                </div>
+
+                <div class="buttons-group">
+                  <button id="addBtn">Сложить</button>
+                  <button id="subtractBtn">Вычесть</button>
+                </div>
+
+                <div id="resultContainer" class="result-container" hidden>
+                  <p>Результат: <strong id="resultValue"></strong></p>
+                  <p>В Кельвинах: <strong id="resultKelvin"></strong></p>
+                </div>
+
+                <div id="tempError" class="error" hidden></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Задание 4: Камень-ножницы-бумага -->
+        <div class="task task4" id="task4-container">
+          <h3>4. Камень-ножницы-бумага</h3>
+          <p>Текстовая трансляция игры в реальном времени через SSE</p>
+
+          <div class="solution-wrapper">
+            <h3 class="solution-title">Решение:</h3>
+            <div class="task-solution task4-solution">
+              <div class="game-controls">
+                <button id="startBtn" class="control-btn start-btn">
+                  Следить за играми
+                </button>
+                <button id="stopBtn" class="control-btn stop-btn" disabled>
+                  Остановить
+                </button>
+                <div id="connectionStatus" class="status-indicator">
+                  Не подключено
+                </div>
+              </div>
+
+              <div id="sseError" class="error" hidden></div>
+
+              <div class="game-dashboard">
+                <div class="score-board">
+                  <div class="player-score player1">
+                    <h3>Игрок 1</h3>
+                    <div class="wins-count" id="player1Wins">0</div>
+                    <div class="wins-label">побед</div>
+                  </div>
+                  <div class="vs">VS</div>
+                  <div class="player-score player2">
+                    <h3>Игрок 2</h3>
+                    <div class="wins-count" id="player2Wins">0</div>
+                    <div class="wins-label">побед</div>
+                  </div>
+                </div>
+
+                <div class="round-history">
+                  <h3>История раундов</h3>
+                  <div id="roundsContainer" class="rounds-list">
+                    <div class="no-rounds">Раунды еще не начались</div>
+                  </div>
+                </div>
+
+                <div class="statistics">
+                  <div class="player-stats player1">
+                    <h3>Статистика Игрока 1</h3>
+                    <div class="stats-container">
+                      <div class="stat-item">
+                        <span class="choice">Камень:</span>
+                        <span class="count" id="player1Rock">0</span>
+                        <span class="percent" id="player1RockPercent">0%</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="choice">Ножницы:</span>
+                        <span class="count" id="player1Scissors">0</span>
+                        <span class="percent" id="player1ScissorsPercent"
+                          >0%</span
+                        >
+                      </div>
+                      <div class="stat-item">
+                        <span class="choice">Бумага:</span>
+                        <span class="count" id="player1Paper">0</span>
+                        <span class="percent" id="player1PaperPercent">0%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="player-stats player2">
+                    <h3>Статистика Игрока 2</h3>
+                    <div class="stats-container">
+                      <div class="stat-item">
+                        <span class="choice">Камень:</span>
+                        <span class="count" id="player2Rock">0</span>
+                        <span class="percent" id="player2RockPercent">0%</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="choice">Ножницы:</span>
+                        <span class="count" id="player2Scissors">0</span>
+                        <span class="percent" id="player2ScissorsPercent"
+                          >0%</span
+                        >
+                      </div>
+                      <div class="stat-item">
+                        <span class="choice">Бумага:</span>
+                        <span class="count" id="player2Paper">0</span>
+                        <span class="percent" id="player2PaperPercent">0%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Импорт футера -->
+    <script src="../partials/footer.js"></script>
+
+    <!-- Скрипты задач -->
+    <script src="./tasks/task1/task1.js"></script>
+    <script src="./tasks/task2/task2.js"></script>
+    <script src="./tasks/task3/task3.js"></script>
+    <script src="./tasks/task4/task4.js"></script>
+  </body>
 </html>
