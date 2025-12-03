@@ -18,25 +18,25 @@
 
 
 # Технологии
-HTML5, CSS3, JavaScript (ES6+)
-Fetch API, Promise, async/await
-Web Storage API (localStorage)
-Constraint Validation API
-ARIA для доступности
-CSS Grid, Flexbox, адаптивная вёрстка
-Git — управление версиями
-Render — хостинг
+- HTML5, CSS3, JavaScript (ES6+)
+- Fetch API, Promise, async/await
+- Web Storage API (localStorage)
+- Constraint Validation API
+- ARIA для доступности
+- CSS Grid, Flexbox, адаптивная вёрстка
+- Git — управление версиями
+- Render — хостинг
 
 #  Структура проекта
 
-project/
-├── css/               # Общие стили проекта
-├── partials/          # Шапка и футер
-├── lab1/              # Лабораторная работа №1
-├── lab2/              # Лабораторная работа №2
-├── lab3/              # Лабораторная работа №3
-├── lab4/              # Лабораторная работа №4
-├── lab5/              # Лабораторная работа №5
-├── lab6/              # Лабораторная работа №6
-├── index.html         # Главная страница
-└── README.md          # Этот файл
+-    project/
+-    ├── css/               # Общие стили проекта
+-    ├── partials/          # Шапка и футер
+-    ├── lab1/              # Лабораторная работа №1
+-    ├── lab2/              # Лабораторная работа №2
+-    ├── lab3/              # Лабораторная работа №3
+-    ├── lab4/              # Лабораторная работа №4
+-    ├── lab5/              # Лабораторная работа №5
+-    ├── lab6/              # Лабораторная работа №6
+-    ├── index.html         # Главная страница
+-    └── README.md          # Этот файл
