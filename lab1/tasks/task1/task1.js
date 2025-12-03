@@ -29,16 +29,3 @@ function updateTemperatureResult() {
     resultElement.textContent = result;
     console.log('Результат конвертации:', result);
 }
-
-function toggleFunctionCode1() {
-    const codeElement = document.getElementById('functionCode1');
-    const button = document.getElementById('toggleCodeBtn1');
-
-    if (codeElement.style.display === 'none' || !codeElement.style.display) {
-        codeElement.style.display = 'block';
-        button.textContent = 'Скрыть код';
-    } else {
-        codeElement.style.display = 'none';
-        button.textContent = 'Показать код';
-    }
-}
